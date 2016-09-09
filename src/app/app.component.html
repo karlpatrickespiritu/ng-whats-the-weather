@@ -2,13 +2,35 @@
   <div class="row">
    <div class="col s12">
     <div class="row">
-     <form class="col s12">
+      <h1>What's the Weather</h1>
+     <form class="col s12" (ngSubmit)="onSubmit()">
        <div class="row">
          <div class="input-field col s12">
-           <input id="city" type="text" class="validate" (input)="search($event)" placeholder="Type the city">
+           <input id="city" type="text" class="validate" placeholder="Type the city" [(ngModel)]="city" name="city">
          </div>
+         <button class="waves-effect waves-light btn" type="submit">Search</button>
        </div>
      </form>
+     <div class="row">
+      <div class="col s12 m12">
+        <div class="card blue-grey darken-1" *ngIf="weather">
+          <div class="card-content white-text">
+            <span class="card-title">City: {{weather.name}}, Country: {{weather.sys.country}}</span>
+            <div class="collection">
+              <a class="collection-item">Weather: {{weather.weather[0].main}},  {{weather.weather[0].description}}</a>
+              <a class="collection-item">Temperature: {{weather.main.temp}}</a>
+              <a class="collection-item">Humidity: {{weather.main.humidity}}</a>
+              <a class="collection-item">Pressure: {{weather.main.pressure}}</a>
+              <a class="collection-item">Sea Level: {{weather.main.sea_level}}</a>
+              <a class="collection-item">Ground Level: {{weather.main.grnd_level}}</a>
+              <a class="collection-item">Wind Speed: {{weather.wind.speed}}</a>
+              <a class="collection-item">Wind Deg: {{weather.wind.deg}}</a>
+              <a href="https://www.google.com.ph/maps/place/{{weather.name}}" class="collection-item">Long: {{weather.coord.lon}}, Lat: {{weather.coord.lat}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
    </div>
   </div>
